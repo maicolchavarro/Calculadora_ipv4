@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora VLSM</title>
+  <link rel="stylesheet" href="../CSS/vlms.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Calculadora VLSM</h2>
+    <p>
+      Esta calculadora le permite subdividir una red utilizando la técnica 
+      <b>VLSM (Máscara de Subred de Longitud Variable)</b>.
+    </p>
+
+    <form id="vlsmForm">
+      <div class="form-row">
+        <label for="ip">Dirección IP</label>
+        <input type="text" id="ip" placeholder="Ej: 192.168.10.0" required>
+        <span id="ipMsg" class="msg"></span>
+      </div>
+
+      <div class="form-row">
+        <label for="prefix">Prefijo de red</label>
+        <input type="number" id="prefix" readonly>
+      </div>
+
+      <div class="form-row">
+        <label for="subnets">Número de subredes</label>
+        <input type="number" id="subnets" min="1">
+      </div>
+
+      <div class="table-wrapper">
+        <table id="hostsTable">
+          <thead>
+            <tr>
+              <th>Subred</th>
+              <th>Número de Hosts</th>
+            </tr>
+          </thead>
+          <tbody id="hostsContainer"></tbody>
+        </table>
+      </div>
+
+      <button type="submit">CALCULAR</button>
+    </form>
+
+    <div id="result"></div>
+  </div>
+
+  <script src="../JS/vlms.js"></script>
+</body>
+</html>

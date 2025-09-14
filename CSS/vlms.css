@@ -1,0 +1,165 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 25px 35px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
+}
+
+h2 {
+  text-align: center;
+  color: #004d25;
+}
+
+p {
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+.form-row {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input {
+  padding: 8px;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  font-size: 14px;
+  outline: none;
+}
+
+input:focus {
+  border-bottom: 2px solid #008000;
+}
+
+.msg {
+  font-size: 12px;
+  color: green;
+}
+
+.table-wrapper {
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #004d25;
+  color: white;
+}
+
+thead th {
+  padding: 10px;
+  text-align: center;
+}
+
+tbody td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+tbody tr:nth-child(even) {
+  background: #3c4a56;
+  color: white;
+}
+
+tbody tr:nth-child(odd) {
+  background: #5a6a78;
+  color: white;
+}
+
+button {
+  display: block;
+  margin: 20px auto 0 auto;
+  background: #008060;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #00694c;
+}
+
+.success-box {
+  background: #e0f7e0;
+  border-left: 6px solid #2e7d32;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.success-box p {
+  margin: 5px 0;
+}
+
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.result-table th, .result-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+.result-table th {
+  background: #004d25;
+  color: white;
+}
+
+.result-table tr:nth-child(even) {
+  background: #3c4a56;
+  color: white;
+}
+
+.result-table tr:nth-child(odd) {
+  background: #5a6a78;
+  color: white;
+}
+
+.action-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.action-buttons button {
+  flex: 1;
+  max-width: 200px;
+  background: #008060;
+  border-radius: 6px;
+}
+
+.action-buttons .danger {
+  background: #d9534f;
+}
+
+.action-buttons .danger:hover {
+  background: #c9302c;
+}
