@@ -1,4 +1,3 @@
-// script.js - VLSM corregido (asigna el bloque mínimo y calcula con los hosts asignados)
 (function () {
   const ipInput = document.getElementById("ip");
   const prefixInput = document.getElementById("prefix");
@@ -9,9 +8,9 @@
 
   prefixInput.readOnly = false;
   prefixInput.min = 1;
-  prefixInput.max = 30; // /31 y /32 no son útiles para hosts, limitar a /30 como mínimo práctico
-
-  // Detecta clase A/B/C y propone un prefijo por defecto
+  prefixInput.max = 30; 
+  
+  // Detectar clase A/B/C 
   ipInput.addEventListener("input", function () {
     const ip = this.value.trim();
     const parts = ip.split(".");
@@ -24,7 +23,7 @@
     }
   });
 
-  // Genera dinámicamente filas para hosts por subred
+  // tablas de subred
   subnetsInput.addEventListener("input", function () {
     const count = Math.max(0, parseInt(this.value, 10) || 0);
     hostsContainer.innerHTML = "";
@@ -45,7 +44,7 @@
     }
   });
 
-  // Prefijo -> máscara string (ej. 255.255.248.0)
+  // máscara 
   function prefixToMask(prefix) {
     let p = prefix;
     const parts = [];
@@ -57,7 +56,7 @@
     return parts.join(".");
   }
 
-  // Prefijo -> máscara entera 32-bit unsigned
+  //  máscara entera 
   function maskIntFromPrefix(prefix) {
     let p = prefix;
     const octs = [];
@@ -69,14 +68,14 @@
     return (octs[0] * 2 ** 24 + octs[1] * 2 ** 16 + octs[2] * 2 ** 8 + octs[3]) >>> 0;
   }
 
-  // IP string -> entero (32-bit unsigned)
+  // IP 
   function ipToInt(ip) {
     const parts = ip.split(".").map(p => parseInt(p, 10));
     if (parts.length !== 4 || parts.some(p => isNaN(p) || p < 0 || p > 255)) return NaN;
     return (parts[0] * 2 ** 24 + parts[1] * 2 ** 16 + parts[2] * 2 ** 8 + parts[3]) >>> 0;
   }
 
-  // entero -> IP string
+  //  IP
   function intToIp(int) {
     int = int >>> 0;
     return [
@@ -87,7 +86,7 @@
     ].join(".");
   }
 
-  // Calcula el prefijo mínimo que soporte 'hostsNecesarios' (redondea hacia arriba)
+  
   function calcularPrefijo(hostsNecesarios) {
     let bits = 0;
     while ((2 ** bits - 2) < hostsNecesarios) bits++;
@@ -118,7 +117,7 @@
       return;
     }
 
-    // Recolectar hosts solicitados (con su id original)
+    // Recolectar hosts solicitados 
     const hostsArray = [];
     for (let i = 0; i < hostInputs.length; i++) {
       const v = parseInt(hostInputs[i].value, 10);
@@ -134,31 +133,31 @@
 
     // Datos de la red base
     const maskInt = maskIntFromPrefix(prefix);
-    const baseStart = (ipInt & maskInt) >>> 0;               // dirección de red base
-    const hostCountBase = 2 ** (32 - prefix);               // direcciones totales en la red base
-    const baseEnd = (baseStart + hostCountBase - 1) >>> 0;  // broadcast de la red base
-    const totalDisponibles = Math.max(0, hostCountBase - 2); // hosts utilizables en la red base
+    const baseStart = (ipInt & maskInt) >>> 0;               
+    const hostCountBase = 2 ** (32 - prefix);               
+    const baseEnd = (baseStart + hostCountBase - 1) >>> 0;  
+    const totalDisponibles = Math.max(0, hostCountBase - 2); 
 
-    // Asignación de bloques (mayores primero)
+    
     let current = baseStart >>> 0;
-    const assigned = []; // guardará la asignación para cada request (con id original)
+    const assigned = []; 
     let overflow = false;
 
     for (const req of sorted) {
       const newPref = calcularPrefijo(req.hosts);
-      const blockSize = 2 ** (32 - newPref);     // direcciones totales en el bloque asignado
+      const blockSize = 2 ** (32 - newPref);     
       const usableHosts = Math.max(0, blockSize - 2);
 
-      // Si este bloque se sale de la red base => overflow
+      
       if (((current + blockSize - 1) >>> 0) > baseEnd) {
         overflow = true;
-        // aun así, lo agregamos para indicar el intento; pero marcaremos error después
+        
       }
 
       assigned.push({
         id: req.id,
         requested: req.hosts,
-        assignedHosts: usableHosts, // hosts útiles en el bloque asignado
+        assignedHosts: usableHosts, 
         newPrefix: newPref,
         netAddr: current >>> 0,
         maskStr: prefixToMask(newPref),
@@ -173,10 +172,10 @@
 
     // Totales
     const totalSolicitados = hostsArray.reduce((acc, s) => acc + s.hosts, 0);
-    // "Número de direcciones requeridas" según te pediste: suma de hosts asignados (útiles)
+    
     const totalAsignados = assigned.reduce((acc, a) => acc + a.assignedHosts, 0);
 
-    // Si overflow -> advertencia y salida
+    
     if (overflow) {
       resultDiv.innerHTML = `
         <div class="success-box" style="border-left-color:#d9534f;background:#fdecea;color:#a94442">
@@ -222,7 +221,7 @@
       </table>
     `;
 
-    // 2) Tabla con subredes — mostramos en orden del id original (para que Subred 1 sea la que ingresaste 1ª)
+    // tabla
     const assignedById = assigned.slice().sort((a, b) => a.id - b.id);
 
     out += `
@@ -255,7 +254,7 @@
 
     out += `</tbody></table>`;
 
-    // Acción final (descargar/demo, paso a paso y recargar)
+    
     out += `
       <div class="action-buttons">
         <button class="danger" onclick="alert('DESCARGAR: se puede implementar con jsPDF si lo deseas')">DESCARGAR</button>
