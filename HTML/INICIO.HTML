@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../CSS/INICIO.CSS ">
   <title>Inicio - Calculadora IPv4</title>
+  <link rel="stylesheet" href="../CSS/INICIO.css">
 </head>
 <body>
   <header>
@@ -14,15 +14,16 @@
 
   <nav>
     <ul>
-      <li><a href="../HTML/INICIO.HTML">Inicio</a></li>
-      <li><a href="../HTML/calculadora_ip.html">Calculadora</a></li>
+      <li><a href="../HTML/INICIO.html">Inicio</a></li>
+      <li><a href="../HTML/calculadora_ip.html">Calculadora IP</a></li>
       <li><a href="../HTML/flsm.html">FLSM</a></li>
       <li><a href="../HTML/vlsm.html">VLSM</a></li>
     </ul>
   </nav>
 
   <main>
-    <section>
+    <!-- Bienvenido -->
+    <section class="welcome-section">
       <h2>Bienvenido</h2>
       <p>En esta aplicación podrás:</p>
       <ul>
@@ -32,14 +33,27 @@
       </ul>
     </section>
 
+    <!-- Accesos rápidos -->
     <section>
       <h2>Accesos rápidos</h2>
       <p>Elige a dónde quieres ir:</p>
-      <ul>
-        <li><a href="../HTML/calculadora_ip.html">Ir a la Calculadora</a></li>
-        <li><a href="../HTML/flsm.html">Ir a FLSM</a></li>
-        <li><a href="../HTML/vlsm.html">Ir a VLSM</a></li>
-      </ul>
+      
+      <div class="card-container">
+        <a href="../HTML/calculadora_ip.html" class="access-card card-blue">
+          <div class="card-screen">IP</div>
+          <div class="card-title">Calculadora IP</div>
+        </a>
+        
+        <a href="../HTML/flsm.html" class="access-card card-green">
+          <div class="card-screen">FLSM</div>
+          <div class="card-title">FLSM</div>
+        </a>
+        
+        <a href="../HTML/vlsm.html" class="access-card card-red">
+          <div class="card-screen">VLSM</div>
+          <div class="card-title">VLSM</div>
+        </a>
+      </div>
     </section>
   </main>
 

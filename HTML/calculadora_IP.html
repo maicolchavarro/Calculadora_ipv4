@@ -1,30 +1,46 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora IPv4</title>
-    <link rel="stylesheet" href="../CSS/calculadora_ip.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Calculadora IPv4</title>
+  <link rel="stylesheet" href="../CSS/calculadora_ip.css" />
 </head>
-<body>
-
 <body>
   <div class="container">
     <h2>Calculadora IP</h2>
-<nav>
-    <ul>
-      <li><a href="../HTML/INICIO.HTML">Inicio</a></li>
-      <li><a href="../HTML/calculadora_ip.html">Calculadora</a></li>
-      <li><a href="../HTML/flsm.html">FLSM</a></li>
-      <li><a href="../HTML/vlsm.html">VLSM</a></li>
-    </ul>
-  </nav>
 
-    <p>
-      Esta sencilla calculadora le permite obtener toda la información que oculata una dirección IPv4, solo tiene que introducir una dirección IP y su prefijo, si no proporciona el prefijo se asumirá el prefijo por defecto
-    </p>
+    <nav>
+      <ul>
+        <li><a href="../HTML/INICIO.HTML">Inicio</a></li>
+        <li><a href="../HTML/calculadora_ip.html">Calculadora</a></li>
+        <li><a href="../HTML/flsm.html">FLSM</a></li>
+        <li><a href="../HTML/vlsm.html">VLSM</a></li>
+      </ul>
+    </nav>
 
+    <p>Esta sencilla calculadora le permite obtener toda la información que oculata una dirección IPv4, solo tiene que introducir una dirección IP y su prefijo, si no proporciona el prefijo se asumirá el prefijo por defecto</p>
 
-    <script src="../JS/calculadora.IP.JS"></script>
+    <div class="form-row">
+      <div class="field">
+        <label for="ip">Dirección IP</label>
+        <input id="ip" type="text" placeholder="Ej: 172.168.0.10 o 172.168.0.10/16" />
+        <div id="mensajeEstado" class="msg"></div>
+      </div>
+
+      <div class="field small">
+        <label for="prefijo">Prefijo de red</label>
+        <input id="prefijo" type="number" min="0" max="32" placeholder="Rango (0-32)" />
+      </div>
+
+      <div class="actions">
+        <button id="btnCalcular">CALCULAR ▶</button>
+      </div>
+    </div>
+
+    <div id="resultado"></div>
+  </div>
+
+  <script src="../JS/calculadora.IP.JS"></script>
 </body>
 </html>

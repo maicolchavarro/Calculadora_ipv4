@@ -188,11 +188,10 @@
       return;
     }
 
-    // Porcentaje uso = (hosts asignados / hosts disponibles de la red base) * 100
+    
     const porcentaje = totalDisponibles > 0 ? (totalAsignados / totalDisponibles) * 100 : 0;
 
-    // Construir HTML de resultados:
-    // 1) Info de la red base
+    
     let out = `
       <div class="success-box">
         <p>✅ ÉXITO! Se aprovecha el ${porcentaje.toFixed(2)}% del número de hosts disponibles</p>
@@ -269,11 +268,11 @@
 const downloadBtn = document.getElementById("downloadPdfBtn");
 if (downloadBtn) {
   downloadBtn.onclick = function () {
-    // Usar jsPDF para generar el PDF
+    
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
 
-    // Extraer solo el contenido de resultados (puedes personalizar esto)
+    
     const text = resultDiv.innerText;
 
     doc.setFontSize(12);
