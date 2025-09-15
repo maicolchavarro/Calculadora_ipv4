@@ -257,12 +257,31 @@
     
     out += `
       <div class="action-buttons">
-        <button class="danger" onclick="alert('DESCARGAR: se puede implementar con jsPDF si lo deseas')">DESCARGAR</button>
+    <button class="danger" id="downloadPdfBtn">DESCARGAR</button>
         <button onclick="alert('VER EXPLICACIÓN PASO A PASO (implementable)')">VER EXPLICACIÓN PASO A PASO</button>
         <button onclick="location.reload()">SUBDIVIDIR OTRA RED</button>
       </div>
     `;
 
     resultDiv.innerHTML = out;
+
+
+const downloadBtn = document.getElementById("downloadPdfBtn");
+if (downloadBtn) {
+  downloadBtn.onclick = function () {
+    // Usar jsPDF para generar el PDF
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Extraer solo el contenido de resultados (puedes personalizar esto)
+    const text = resultDiv.innerText;
+
+    doc.setFontSize(12);
+    doc.text(text, 10, 10, { maxWidth: 180 });
+
+    doc.save("resultado_vlsm.pdf");
+  };
+}
+
   });
 })();
