@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora FLSM</title>
+  <link rel="stylesheet" href="../CSS/vlms.css">
+</head>
+
+<body>
+  <div class="container">
+    <h2>Calculadora FLSM</h2>
+
+    <nav>
+      <ul>
+        <li><a href="../HTML/INICIO.HTML">Inicio</a></li>
+        <li><a href="../HTML/calculadora_ip.html">Calculadora IP</a></li>
+        <li><a href="../HTML/flsm.html">FLSM</a></li>
+        <li><a href="../HTML/vlsm.html">VLSM</a></li>
+      </ul>
+    </nav>
+
+    <p>
+      Esta calculadora permite subdividir una red usando la técnica
+      <b>FLSM (Máscara de Subred de Longitud Fija)</b>.
+    </p>
+
+    <form id="flsmForm">
+      <div class="form-row">
+        <label for="ip">Dirección IP</label>
+        <input type="text" id="ip" placeholder="Ej: 192.168.1.0" required>
+      </div>
+
+      <div class="form-row">
+        <label for="prefix">Prefijo de red</label>
+        <input type="number" id="prefix" min="1" max="30" required>
+      </div>
+
+      <div class="form-row">
+        <label for="subnets">Número de subredes</label>
+        <input type="number" id="subnets" min="1">
+      </div>
+
+      <div class="form-row">
+        <label for="hostsPerSubnet">Hosts por subred</label>
+        <input type="number" id="hostsPerSubnet" min="1">
+      </div>
+
+      <button type="submit">CALCULAR</button>
+    </form>
+
+    <div id="result"></div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="../JS/flsm.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+  <script src="../JS/flsm.js"></script>
+
+</body>
+</html>
